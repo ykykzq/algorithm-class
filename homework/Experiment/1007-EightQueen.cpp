@@ -38,7 +38,7 @@ bool CanPlace(int i,int j){
 }
 
 void display(){
-    printf("No %d:",answer);
+    printf("No %d:\n",answer);
     for(int i=0;i<8;i++){
         for(int j=0;j<8;j++){
             printf("%c",castle[i][j]);
@@ -47,14 +47,14 @@ void display(){
     }
 }
 
-void Queen(int i){
+void Queen(int i){//i代表了列
     if(i==8){
         answer++;
         display();
     }
     else{
         for(int j=0;j<8;j++){
-            Queen(i+1);//此处不放
+            //Queen(i+1);//此处不放
             if(CanPlace(i,j)){
                 castle[i][j]='A';
                 Queen(i+1);
