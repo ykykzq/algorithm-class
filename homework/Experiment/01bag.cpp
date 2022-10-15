@@ -28,7 +28,7 @@ int main(){
             scanf("%d",&value[i]);
         }
         search(0,0,0);
-        printf("%d",MAX_VALUE);
+        printf("%d\n",MAX_VALUE);
         MAX_VALUE=0;
     }
     
