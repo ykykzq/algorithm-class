@@ -21,7 +21,7 @@ int main(){
     while(1){
         scanf("%d%d",&n,&c);
         if(n==0&&c==0)break;
-        for(int i=0;i<n;i++0){
+        for(int i=0;i<n;i++){
             scanf("%d",&weight[i]);
         }
         for(int i=0;i<n;i++){
