@@ -40,9 +40,10 @@ bool CanPlace(int x,int y,int value){
 void search(int i){
     if(i==9){
         for(int x=0;x<3;x++){
-            for(int y=0;y<3;y++){
+            for(int y=0;y<2;y++){
                 printf("%d ",square[x][y]);
             }
+            printf("%d",square[x][2]);
             printf("\n");
         }
         printf("\n");
