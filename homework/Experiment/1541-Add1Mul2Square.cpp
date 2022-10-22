@@ -1,9 +1,10 @@
-//需要注意while的死循环，见line54
+//需要注意while的死循环，见line52
 #include <iostream>
 #include <queue>
 using namespace std;
 int Answer;//需要的次数
 int Father[100000];//用于记录每个节点的父节点，并用于判重
+queue<int> q1;
 
 int MakeNewNode(int i,int now_n){
     if(i==1)
@@ -22,7 +23,6 @@ bool Check(int now_n,int n){
         return false;
     return true;
 }
-queue<int> q1;
 bool search(int m,int n){
     q1.push(m);
     // Father[m]=m;
@@ -31,10 +31,8 @@ bool search(int m,int n){
         q1.pop();
         int new_node;
 
-
         for(int i=1;i<=3;i++){
             new_node=MakeNewNode(i,now);
-            
             if(Check(new_node,n)){//此节点是可扩展节点，则设置父节点、放入队列
                 Father[new_node]=now;
                 q1.push(new_node);
@@ -52,7 +50,7 @@ int main(){
     search(m,n);
 
     //例如数据1,16，那么1会在后续产生，因此Father[1]==1,将会覆盖掉出发数据的father，进而产生死循环。
-    //解决方案1：重新设置开始数据父节点为0（line57）
+    //解决方案1：重新设置开始数据父节点为0（line55）
     //解决方案2：设置开始数据的父节点为自己（line28），并将下面的while终止条件设置为n不等于m
     Father[m]=0;
     while(Father[n]!=0){
