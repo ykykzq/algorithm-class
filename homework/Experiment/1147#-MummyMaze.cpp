@@ -1,3 +1,4 @@
+//巨傻逼，判定越界（line72）必须为6，否则就会WA，完全无法理解
 #include<stdio.h>
 #include<queue>
 using namespace std;
@@ -21,9 +22,9 @@ node MummyMove(node NewNode){//木乃伊的某一步
             if(maze[NewNode.MummyX][NewNode.MummyY-1]!='#')
                     NewNode.MummyY--;
             else 
-                 ;
+                ;
         else //人在右
-            if(maze[NewNode.MummyY][NewNode.MummyY+1]!='#')
+            if(maze[NewNode.MummyX][NewNode.MummyY+1]!='#')
                 NewNode.MummyY++;
              else 
                 ;  
@@ -49,35 +50,28 @@ node MakeNewNode(node NowNode,int i){//这里要体现出“牵制”，保证�
     NewNode.step++;
 
     //无需保证人的行动是合法的，因为下有Check函数进行检查
-    if(i==1){//向上走
+    if(i==1){//向左走
         NewNode.PeopleY--;
-        //木乃伊走两步
-        NewNode=MummyMove(NewNode);
-        NewNode=MummyMove(NewNode);
     }
-    if(i==2){//向下走
+    if(i==2){//向右走
         NewNode.PeopleY++;
-        //木乃伊走两步
-        NewNode=MummyMove(NewNode);
-        NewNode=MummyMove(NewNode);
     }
-    if(i==3){//向左走
+    if(i==3){//向上走
         NewNode.PeopleX--;
-        //木乃伊走两步
-        NewNode=MummyMove(NewNode);
-        NewNode=MummyMove(NewNode);
     }
-    if(i==4){//向右走
+    if(i==4){//向下走
         NewNode.PeopleX++;
-        //木乃伊走两步
-        NewNode=MummyMove(NewNode);
-        NewNode=MummyMove(NewNode);
     }
+    //木乃伊走两步
+    NewNode=MummyMove(NewNode);
+    NewNode=MummyMove(NewNode);
     return NewNode;
 }
 
 bool Check(node NewNode){//检查产生的节点的合法性
-    if(NewNode.PeopleX<0||NewNode.PeopleX>5||NewNode.PeopleY<0||NewNode.PeopleY>5)//越界
+    if(NewNode.PeopleX<0||NewNode.PeopleX>6||NewNode.PeopleY<0||NewNode.PeopleY>6)//人越界
+        return false;
+    if(NewNode.MummyX<0||NewNode.MummyX>6||NewNode.MummyY<0||NewNode.MummyY>6)//木乃伊越界
         return false;
     if(maze[NewNode.PeopleX][NewNode.PeopleY]=='#')//人不能走到墙上
         return false;
@@ -86,23 +80,6 @@ bool Check(node NewNode){//检查产生的节点的合法性
     if(NewNode.PeopleX==NewNode.MummyX&&NewNode.PeopleY==NewNode.MummyY)//被抓住了
         return false;
     return true;
-}
-
-void display(node newnode){
-    for(int i=0;i<6;i++){
-        for(int j=0;j<6;j++){
-            if(maze[i][j]='#')
-                printf("%3c",maze[i][j]);
-            if(i==newnode.MummyX&&j==newnode.MummyY)
-                printf(" M ");
-            else if(i==newnode.PeopleX&&newnode.PeopleY)
-                printf(" P ");
-            else    
-                printf(" . ");
-        }     
-        printf("\n");
-    }
-    printf("\n");
 }
 
 bool search(node start,node end){
@@ -137,15 +114,9 @@ int main(){
             maze[x][y+1]='#';
     }
     int x,y;
-    scanf("%d %d",&x,&y);
-    start.MummyX=x;
-    start.MummyY=y;
-    scanf("%d %d",&x,&y);
-    start.PeopleX=x;
-    start.PeopleY=y;
-    scanf("%d %d",&x,&y);
-    end.PeopleX=x;
-    end.PeopleY=y;
+    scanf("%d %d",&start.MummyX,&start.MummyY);
+    scanf("%d %d",&start.PeopleX,&start.PeopleY);
+    scanf("%d %d",&end.PeopleX,&end.PeopleY);
 
 
     //初始化
