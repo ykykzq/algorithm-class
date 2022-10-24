@@ -109,7 +109,7 @@ int main(){
     start.step=0;
     int answer=search(start,end);
 
-    printf("%d",answer);
+    printf("%d\n",answer);
 
     return 0;
 }//end main
