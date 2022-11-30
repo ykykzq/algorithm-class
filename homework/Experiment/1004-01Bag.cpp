@@ -35,3 +35,42 @@ int main(){
     return 0;
 
 }
+
+//用动态规划解
+// #include<stdio.h>
+// int ans[200][200];
+// typedef struct node{
+//     int weight,value;
+// }node;
+// int main(){
+//     while(1){
+//         int n,volume;
+//         scanf("%d%d",&n,&volume);
+//         if(n==0&&volume==0)
+//             break;
+//         node obj[20];
+
+//         for(int i=1;i<=n;i++){
+//             scanf("%d",&obj[i].weight);
+//         }
+//         for(int i=1;i<=n;i++){
+//             scanf("%d",&obj[i].value);
+//         }
+
+//         for(int i=0;i<200;i++)
+//             ans[i][0]=ans[0][i]=0;
+
+//         for(int i=1;i<=n;i++){
+//             for(int j=1;j<=volume;j++){
+//                 if(obj[i].weight<=j){
+//                     ans[i][j]=ans[i-1][j]>ans[i-1][j-obj[i].weight]+obj[i].value?ans[i-1][j]:ans[i-1][j-obj[i].weight]+obj[i].value;
+//                 }
+//                 else
+//                     ans[i][j]=ans[i-1][j];
+//             }
+//         }
+//         printf("%d\n",ans[n][volume]);
+
+//     }
+//     return 0;
+// }

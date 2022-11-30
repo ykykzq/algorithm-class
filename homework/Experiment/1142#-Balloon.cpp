@@ -1,16 +1,8 @@
 #include<stdio.h>
 bool flag_a,flag_b;
 
-bool IsPrime(int a){
-    for(int i=2;i<a;i++){
-        if(a%2==0)
-            return false;
-    }
-    return true;
-}
-
 // int now_a,now_b;
-//对于100以内的数，只有三种状态：a的约数，b的约数，不是约数
+//对于100以内的数i，只有三种状态：a的约数，b的约数，不是约数
 void search(int i,int now_a,int now_b,int a,int b){
     if(i==101){
         if(now_a==a&&now_b==b){
