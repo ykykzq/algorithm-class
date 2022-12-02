@@ -1,5 +1,5 @@
 #include<stdio.h>
-int ring[20];//素数环,亦即最后的解
+int ring[20];//素数环,亦即最后的解，没有用到
 
 int TempRing[20];//当前的解
 
